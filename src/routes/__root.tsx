@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "EixoZ Personalizados" },
+      { name: "description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "EixoZ Personalizados" },
+      { property: "og:description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "EixoZ Personalizados" },
+      { name: "twitter:description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6b19fdb1-6dcc-4638-a5f1-86fce4b9d816" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6b19fdb1-6dcc-4638-a5f1-86fce4b9d816" },
     ],
     links: [
       {
