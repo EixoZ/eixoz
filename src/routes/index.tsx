@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20EixoZ%20Personalizados";
+const WHATSAPP_URL = "https://wa.me/5522999451081?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20EixoZ%20Personalizados";
 
 function TickerZ() {
   return (
@@ -291,7 +291,7 @@ function Footer() {
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/eixozpersonalizados"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
