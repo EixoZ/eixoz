@@ -127,7 +127,6 @@ function Hero() {
               Ver portfólio
             </a>
           </div>
-          <div className="mt-10 grid max-w-md grid-cols-3 gap-6 text-sm">
           <div className="mt-10 flex flex-wrap gap-2">
             {[
               { icon: Handshake, label: "Atendimento direto com o maker" },
