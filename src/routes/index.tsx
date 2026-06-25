@@ -173,12 +173,12 @@ const PRODUCTS = [
   },
   {
     title: "Brindes Corporativos",
-    desc: "Brindes únicos com seu logo e identidade. Lotes pequenos ou grandes, prazo garantido.",
+    desc: "Brindes únicos com a sua identidade. Lotes pequenos ou grandes, prazo garantido.",
     img: imgCorporativos,
   },
   {
     title: "Peças Personalizadas",
-    desc: "Do seu desenho ao objeto real: criamos peças sob medida — presentes únicos, suportes, acessórios e projetos especiais. Mande sua ideia e a gente modela e imprime para você.",
+    desc: "Do seu desenho ao objeto real: criamos suas peças únicas — presentes encantadores, suportes, acessórios e projetos especiais. Mande sua ideia e a gente modela e imprime para você.",
     img: imgPersonalizados,
   },
 ];
@@ -233,7 +233,7 @@ function Products() {
 }
 
 const STEPS = [
-  { icon: Upload, title: "Envie sua ideia", desc: "Mande um arquivo STL, uma foto ou só descreva — a gente cuida do resto." },
+  { icon: Upload, title: "Envie sua ideia", desc: "Mande um arquivo STL/3MF, uma foto ou só descreva — a gente cuida do resto." },
   { icon: Printer, title: "Imprimimos com qualidade", desc: "Trabalhamos com impressão FDM em filamentos PLA e PETG, com revisão de qualidade peça por peça e acabamento caprichado." },
   { icon: Truck, title: "Entrega rápida na sua casa", desc: "Embalado com capricho e despachado em todo o Brasil em poucos dias." },
 ];
@@ -311,12 +311,12 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="mailto:contato@eixoz.com"
+              href="mailto:contato@eixozpersonalizados.com.br"
               aria-label="Email"
               className="inline-flex h-11 items-center gap-2 rounded-full border border-border bg-card px-4 text-sm font-medium text-foreground transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               <Mail className="h-4 w-4" />
-              contato@eixoz.com
+              contato@eixozpersonalizados.com.br
             </a>
           </div>
         </div>
