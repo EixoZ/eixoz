@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles } from "lucide-react";
+import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles, Handshake, MapPin, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import logoAsset from "@/assets/eixoz-logo.png.asset.json";
 import imgColecionaveis from "@/assets/cat-colecionaveis.jpg";
 import imgCorporativos from "@/assets/cat-corporativos.jpg";
-import imgChaveiros from "@/assets/cat-chaveiros.jpg";
+import imgPersonalizados from "@/assets/cat-personalizados.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,15 +128,19 @@ function Hero() {
             </a>
           </div>
           <div className="mt-10 grid max-w-md grid-cols-3 gap-6 text-sm">
+          <div className="mt-10 flex flex-wrap gap-2">
             {[
-              { k: "+500", v: "projetos" },
-              { k: "48h", v: "protótipos" },
-              { k: "0,1mm", v: "precisão" },
-            ].map((s) => (
-              <div key={s.v}>
-                <div className="font-display text-2xl font-bold text-foreground">{s.k}</div>
-                <div className="text-muted-foreground">{s.v}</div>
-              </div>
+              { icon: Handshake, label: "Atendimento direto com o maker" },
+              { icon: BadgeCheck, label: "Orçamento sem compromisso" },
+              { icon: MapPin, label: "Envio para todo o Brasil" },
+            ].map((b) => (
+              <span
+                key={b.label}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground"
+              >
+                <b.icon className="h-3.5 w-3.5 text-[var(--accent)]" />
+                {b.label}
+              </span>
             ))}
           </div>
         </div>
@@ -174,9 +178,9 @@ const PRODUCTS = [
     img: imgCorporativos,
   },
   {
-    title: "Chaveiros Inteligentes",
-    desc: "Chaveiros com NFC, QR code e gravação personalizada. Tecnologia que cabe no bolso.",
-    img: imgChaveiros,
+    title: "Peças Personalizadas",
+    desc: "Do seu desenho ao objeto real: criamos peças sob medida — presentes únicos, suportes, acessórios e projetos especiais. Mande sua ideia e a gente modela e imprime para você.",
+    img: imgPersonalizados,
   },
 ];
 
@@ -231,7 +235,7 @@ function Products() {
 
 const STEPS = [
   { icon: Upload, title: "Envie sua ideia", desc: "Mande um arquivo STL, uma foto ou só descreva — a gente cuida do resto." },
-  { icon: Printer, title: "Imprimimos com alta tecnologia", desc: "FDM e resina de última geração, com acabamento premium e revisão de qualidade." },
+  { icon: Printer, title: "Imprimimos com qualidade", desc: "Trabalhamos com impressão FDM em filamentos PLA e PETG, com revisão de qualidade peça por peça e acabamento caprichado." },
   { icon: Truck, title: "Entrega rápida na sua casa", desc: "Embalado com capricho e despachado em todo o Brasil em poucos dias." },
 ];
 
