@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import faviconAsset from "../assets/favicon.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -78,23 +79,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "EixoZ Personalizados" },
-      { name: "description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "EixoZ Personalizados" },
-      { property: "og:description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "EixoZ Personalizados" },
-      { name: "twitter:description", content: "Sua ideia impressa em alta definição. Colecionáveis, chibis, brindes corporativos e personalizados impressos em 3D com acabamento premium." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6b19fdb1-6dcc-4638-a5f1-86fce4b9d816" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/6b19fdb1-6dcc-4638-a5f1-86fce4b9d816" },
+      { property: "og:site_name", content: "EixoZ Personalizados" },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", type: "image/png", href: faviconAsset.url },
+      { rel: "apple-touch-icon", href: faviconAsset.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
