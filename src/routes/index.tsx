@@ -20,7 +20,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/5522999451081?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20EixoZ%20Personalizados";
+const WHATSAPP_URL = `https://wa.me/5522999451081?text=${encodeURIComponent(
+  "Olá, EixoZ! Tenho uma ideia que quero ver impressa em 3D — pode me ajudar com um orçamento?",
+)}`;
 
 function TickerZ() {
   return (
@@ -106,8 +108,8 @@ function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Colecionáveis e chibis, brindes corporativos e chaveiros inteligentes —
-            impressos em 3D com acabamento premium e prazo que cabe no seu projeto.
+            Colecionáveis e chibis, brindes corporativos e peças personalizadas —
+            impressos em 3D com acabamento premium, atenção a cada detalhe e prazo que cabe no seu projeto.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
@@ -168,7 +170,7 @@ function Hero() {
 const PRODUCTS = [
   {
     title: "Colecionáveis & Chibis",
-    desc: "Personagens, miniaturas e action figures impressos em alta resolução, pintados à mão.",
+    desc: "Personagens, miniaturas e action figures em alta resolução — impressos coloridos ou finalizados com pintura à mão para um acabamento único.",
     img: imgColecionaveis,
   },
   {
@@ -300,7 +302,7 @@ function Footer() {
               <Instagram className="h-5 w-5" />
             </a>
             <a
-              href="https://tiktok.com"
+              href="https://www.tiktok.com/@eixozpersonalizados"
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok"
