@@ -3,18 +3,53 @@ import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, Arro
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import logoAsset from "@/assets/eixoz-logo.png.asset.json";
+import faviconAsset from "@/assets/favicon.png.asset.json";
 import imgColecionaveis from "@/assets/cat-colecionaveis.jpg";
 import imgCorporativos from "@/assets/cat-corporativos.jpg";
 import imgPersonalizados from "@/assets/cat-personalizados.jpg";
 
+const SITE_URL = "https://eixoz.lovable.app";
+const OG_IMAGE = `${SITE_URL}${faviconAsset.url}`;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "EixoZ Personalizados — Impressão 3D Premium" },
-      { name: "description", content: "Estúdio de impressão 3D premium: colecionáveis, brindes corporativos e chaveiros inteligentes feitos sob medida. Da ideia à entrega, com alta tecnologia." },
-      { property: "og:title", content: "EixoZ Personalizados — Impressão 3D Premium" },
-      { property: "og:description", content: "Colecionáveis, brindes corporativos e chaveiros inteligentes impressos em 3D, feitos sob medida para você." },
+      { title: "EixoZ Personalizados | Impressão 3D Premium e Sob Medida" },
+      { name: "description", content: "Estúdio de impressão 3D premium em PLA e PETG: colecionáveis, chibis, brindes corporativos e peças personalizadas sob medida. Orçamento rápido pelo WhatsApp e envio para todo o Brasil." },
+      { name: "keywords", content: "impressão 3D, impressão 3D personalizada, colecionáveis 3D, chibis impressos, brindes corporativos 3D, chaveiros personalizados, peças sob medida, PLA, PETG, EixoZ" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "EixoZ Personalizados | Impressão 3D Premium e Sob Medida" },
+      { property: "og:description", content: "Colecionáveis, brindes corporativos e peças personalizadas impressos em 3D com acabamento premium. Da sua ideia à entrega em todo o Brasil." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL + "/" },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:title", content: "EixoZ Personalizados | Impressão 3D Premium" },
+      { name: "twitter:description", content: "Colecionáveis, brindes e peças sob medida impressos em 3D com acabamento premium." },
+      { name: "twitter:image", content: OG_IMAGE },
+    ],
+    links: [
+      { rel: "canonical", href: SITE_URL + "/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "EixoZ Personalizados",
+          description: "Estúdio de impressão 3D premium em PLA e PETG. Colecionáveis, chibis, brindes corporativos e peças personalizadas sob medida.",
+          url: SITE_URL,
+          image: OG_IMAGE,
+          telephone: "+55-22-99945-1081",
+          email: "contato@eixozpersonalizados.com.br",
+          areaServed: "BR",
+          priceRange: "$$",
+          sameAs: [
+            "https://instagram.com/eixozpersonalizados",
+            "https://www.tiktok.com/@eixozpersonalizados",
+          ],
+        }),
+      },
     ],
   }),
   component: Index,
