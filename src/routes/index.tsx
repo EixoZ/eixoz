@@ -383,10 +383,86 @@ function HowItWorks() {
   );
 }
 
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <section id="faq" className="bg-[var(--surface)] py-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mb-12 text-center">
+          <div className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[var(--accent)]">FAQ</div>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Perguntas frequentes</h2>
+          <p className="mt-4 text-muted-foreground">Tirando suas dúvidas antes mesmo de você perguntar.</p>
+        </div>
+        <ul className="flex flex-col gap-3">
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <li
+                key={item.id}
+                id={item.id}
+                className={`overflow-hidden rounded-2xl border bg-card transition-colors ${
+                  isOpen ? "border-[var(--primary)]" : "border-border hover:border-[var(--primary)]/60"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${item.id}-panel`}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+                >
+                  <span className="font-display text-base font-semibold text-foreground sm:text-lg">
+                    {item.q}
+                  </span>
+                  <span
+                    className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-[var(--surface)] text-[var(--accent)] transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                    aria-hidden
+                  >
+                    <Plus className="h-5 w-5" />
+                  </span>
+                </button>
+                <div
+                  id={`${item.id}-panel`}
+                  role="region"
+                  className={`grid transition-all duration-300 ease-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-5 pb-6 text-sm leading-relaxed text-muted-foreground sm:px-6 sm:text-base">
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="mt-12 rounded-3xl border border-border bg-card p-6 text-center sm:p-8">
+          <h3 className="font-display text-xl font-bold">Não encontrou sua dúvida?</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Fala com a gente no WhatsApp — respondemos rapidinho com tudo que você precisa saber.
+          </p>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-foreground)] shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer id="contato" className="border-t border-border bg-[var(--surface)]">
-      {/* footer below */}
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="flex flex-col items-center gap-6 text-center">
           <img src={logoAsset.url} alt="EixoZ Personalizados" className="h-24 w-24 rounded-2xl object-contain" />
