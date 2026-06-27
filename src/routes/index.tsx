@@ -386,6 +386,7 @@ function HowItWorks() {
 function Footer() {
   return (
     <footer id="contato" className="border-t border-border bg-[var(--surface)]">
+      {/* footer below */}
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="flex flex-col items-center gap-6 text-center">
           <img src={logoAsset.url} alt="EixoZ Personalizados" className="h-24 w-24 rounded-2xl object-contain" />
