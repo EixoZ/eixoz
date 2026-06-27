@@ -441,6 +441,7 @@ function Index() {
         <Hero />
         <Products />
         <HowItWorks />
+        <FAQ />
       </main>
       <Footer />
     </div>
