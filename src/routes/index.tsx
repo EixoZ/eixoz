@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles, Handshake, MapPin, BadgeCheck } from "lucide-react";
+import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles, Handshake, MapPin, BadgeCheck, Plus } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import logoAsset from "@/assets/eixoz-logo.png.asset.json";
@@ -58,6 +59,59 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL = `https://wa.me/5522999451081?text=${encodeURIComponent(
   "Olá, EixoZ! Tenho uma ideia que quero ver impressa em 3D — pode me ajudar com um orçamento?",
 )}`;
+
+const FAQ_ITEMS: { id: string; q: string; a: string }[] = [
+  {
+    id: "faq-orcamento",
+    q: "Como faço para solicitar um orçamento?",
+    a: 'É super simples! Basta clicar em qualquer botão "Fale Conosco no WhatsApp" aqui no site. Você pode nos enviar uma foto de referência, uma ideia desenhada ou em texto o mais detalhada possível para podermos entender a sua ideia ou, se já tiver, o arquivo digital em formato STL ou 3MF. Nós avaliamos a complexidade e te passamos o valor.',
+  },
+  {
+    id: "faq-sem-arquivo",
+    q: "Eu não entendo nada de arquivos 3D. Consigo encomendar mesmo assim?",
+    a: "Com certeza! Você não precisa ser especialista. Se você quer um boneco personalizado, um brinde ou uma peça de reposição, basta nos explicar a sua ideia ou mandar fotos de referência pelo WhatsApp. Nós cuidamos da parte técnica para você.",
+  },
+  {
+    id: "faq-tamanho",
+    q: "Qual o tamanho máximo que vocês conseguem imprimir?",
+    a: "Nossa tecnologia permite imprimir peças inteiras de até 25 cm de altura, largura ou profundidade. Porém, para projetos maiores, nós podemos segmentar o modelo em várias partes, imprimir separadamente e fazer a montagem final com encaixes perfeitos e invisíveis.",
+  },
+  {
+    id: "faq-materiais",
+    q: "Quais materiais vocês utilizam nas impressões?",
+    a: "Trabalhamos principalmente com dois materiais de alta qualidade: o PLA (plástico biodegradável, perfeito para Action Figures, chibis, decoração e brindes devido ao altíssimo nível de detalhes) e o PETG (material mais resistente a impactos e calor, ideal para peças funcionais e mecânicas).",
+  },
+  {
+    id: "faq-pintura",
+    q: "As peças já vêm coloridas ou pintadas?",
+    a: "Oferecemos duas modalidades: a impressão em cores sólidas selecionadas ou o nosso grande diferencial, que são as peças com acabamento premium e pintura manual. Para colecionáveis e chibis, aplicamos uma técnica artesanal de pintura detalhada que dá vida e exclusividade ao seu projeto.",
+  },
+  {
+    id: "faq-prazo",
+    q: "Qual é o prazo de produção e entrega?",
+    a: "O prazo varia de acordo com o tamanho e a complexidade da peça. Impressões simples ou brindes corporativos em pequenas quantidades costumam ficar prontos em 2 a 5 dias úteis. Projetos que exigem pintura manual detalhada podem precisar de um prazo um pouco maior, mas relaxa que tudo será combinado direto no orçamento. OK?",
+  },
+  {
+    id: "faq-envio",
+    q: "Vocês enviam para todo o Brasil? Como a peça é embalada?",
+    a: "Sim, enviamos para qualquer lugar do país via Correios ou transportadora. Como sabemos que as peças 3D possuem detalhes delicados, nós embalamos cada item com plástico-bolha reforçado e caixas protegidas para garantir que o seu produto chegue impecável.",
+  },
+  {
+    id: "faq-minimo",
+    q: "Existe uma quantidade mínima para pedidos?",
+    a: "Não! Atendemos desde o cliente que quer apenas uma única peça exclusiva para presentear alguém, até empresas que precisam de dezenas ou centenas de brindes corporativos e chaveiros para eventos.",
+  },
+  {
+    id: "faq-resistencia",
+    q: "As peças de impressão 3D são resistentes? Podem ficar ao sol?",
+    a: "As peças decorativas (em PLA) são bastante resistentes para o uso diário em ambientes internos, mas não devem ser expostas ao sol forte ou calor extremo (dentro do carro, por exemplo), pois podem deformar. Para peças que vão pegar sol ou esforço mecânico, nós recomendamos o uso do material PETG.",
+  },
+  {
+    id: "faq-pagamento",
+    q: "Quais são as formas de pagamento aceitas?",
+    a: "Para iniciar a produção do seu projeto personalizado, trabalhamos com pagamento via Pix ou Cartão de Crédito. O início da impressão ou da modelagem começa logo após a confirmação do pagamento via WhatsApp. Combinado?",
+  },
+];
 
 function TickerZ() {
   return (
