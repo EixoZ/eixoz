@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles, Handshake, MapPin, BadgeCheck } from "lucide-react";
+import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, ArrowRight, Sparkles, Handshake, MapPin, BadgeCheck, Plus } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import logoAsset from "@/assets/eixoz-logo.png.asset.json";
@@ -50,6 +51,18 @@ export const Route = createFileRoute("/")({
           ],
         }),
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_ITEMS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
     ],
   }),
   component: Index,
@@ -58,6 +71,59 @@ export const Route = createFileRoute("/")({
 const WHATSAPP_URL = `https://wa.me/5522999451081?text=${encodeURIComponent(
   "Olá, EixoZ! Tenho uma ideia que quero ver impressa em 3D — pode me ajudar com um orçamento?",
 )}`;
+
+const FAQ_ITEMS: { id: string; q: string; a: string }[] = [
+  {
+    id: "faq-orcamento",
+    q: "Como faço para solicitar um orçamento?",
+    a: 'É super simples! Basta clicar em qualquer botão "Fale Conosco no WhatsApp" aqui no site. Você pode nos enviar uma foto de referência, uma ideia desenhada ou em texto o mais detalhada possível para podermos entender a sua ideia ou, se já tiver, o arquivo digital em formato STL ou 3MF. Nós avaliamos a complexidade e te passamos o valor.',
+  },
+  {
+    id: "faq-sem-arquivo",
+    q: "Eu não entendo nada de arquivos 3D. Consigo encomendar mesmo assim?",
+    a: "Com certeza! Você não precisa ser especialista. Se você quer um boneco personalizado, um brinde ou uma peça de reposição, basta nos explicar a sua ideia ou mandar fotos de referência pelo WhatsApp. Nós cuidamos da parte técnica para você.",
+  },
+  {
+    id: "faq-tamanho",
+    q: "Qual o tamanho máximo que vocês conseguem imprimir?",
+    a: "Nossa tecnologia permite imprimir peças inteiras de até 25 cm de altura, largura ou profundidade. Porém, para projetos maiores, nós podemos segmentar o modelo em várias partes, imprimir separadamente e fazer a montagem final com encaixes perfeitos e invisíveis.",
+  },
+  {
+    id: "faq-materiais",
+    q: "Quais materiais vocês utilizam nas impressões?",
+    a: "Trabalhamos principalmente com dois materiais de alta qualidade: o PLA (plástico biodegradável, perfeito para Action Figures, chibis, decoração e brindes devido ao altíssimo nível de detalhes) e o PETG (material mais resistente a impactos e calor, ideal para peças funcionais e mecânicas).",
+  },
+  {
+    id: "faq-pintura",
+    q: "As peças já vêm coloridas ou pintadas?",
+    a: "Oferecemos duas modalidades: a impressão em cores sólidas selecionadas ou o nosso grande diferencial, que são as peças com acabamento premium e pintura manual. Para colecionáveis e chibis, aplicamos uma técnica artesanal de pintura detalhada que dá vida e exclusividade ao seu projeto.",
+  },
+  {
+    id: "faq-prazo",
+    q: "Qual é o prazo de produção e entrega?",
+    a: "O prazo varia de acordo com o tamanho e a complexidade da peça. Impressões simples ou brindes corporativos em pequenas quantidades costumam ficar prontos em 2 a 5 dias úteis. Projetos que exigem pintura manual detalhada podem precisar de um prazo um pouco maior, mas relaxa que tudo será combinado direto no orçamento. OK?",
+  },
+  {
+    id: "faq-envio",
+    q: "Vocês enviam para todo o Brasil? Como a peça é embalada?",
+    a: "Sim, enviamos para qualquer lugar do país via Correios ou transportadora. Como sabemos que as peças 3D possuem detalhes delicados, nós embalamos cada item com plástico-bolha reforçado e caixas protegidas para garantir que o seu produto chegue impecável.",
+  },
+  {
+    id: "faq-minimo",
+    q: "Existe uma quantidade mínima para pedidos?",
+    a: "Não! Atendemos desde o cliente que quer apenas uma única peça exclusiva para presentear alguém, até empresas que precisam de dezenas ou centenas de brindes corporativos e chaveiros para eventos.",
+  },
+  {
+    id: "faq-resistencia",
+    q: "As peças de impressão 3D são resistentes? Podem ficar ao sol?",
+    a: "As peças decorativas (em PLA) são bastante resistentes para o uso diário em ambientes internos, mas não devem ser expostas ao sol forte ou calor extremo (dentro do carro, por exemplo), pois podem deformar. Para peças que vão pegar sol ou esforço mecânico, nós recomendamos o uso do material PETG.",
+  },
+  {
+    id: "faq-pagamento",
+    q: "Quais são as formas de pagamento aceitas?",
+    a: "Para iniciar a produção do seu projeto personalizado, trabalhamos com pagamento via Pix ou Cartão de Crédito. O início da impressão ou da modelagem começa logo após a confirmação do pagamento via WhatsApp. Combinado?",
+  },
+];
 
 function TickerZ() {
   return (
@@ -103,6 +169,7 @@ function Header() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
           <a href="#produtos" className="transition-colors hover:text-foreground">Produtos</a>
           <a href="#como-funciona" className="transition-colors hover:text-foreground">Como funciona</a>
+          <a href="#faq" className="transition-colors hover:text-foreground">FAQ</a>
           <a href="#contato" className="transition-colors hover:text-foreground">Contato</a>
         </nav>
         <div className="flex items-center gap-2">
@@ -316,6 +383,83 @@ function HowItWorks() {
   );
 }
 
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  return (
+    <section id="faq" className="bg-[var(--surface)] py-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mb-12 text-center">
+          <div className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[var(--accent)]">FAQ</div>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Perguntas frequentes</h2>
+          <p className="mt-4 text-muted-foreground">Tirando suas dúvidas antes mesmo de você perguntar.</p>
+        </div>
+        <ul className="flex flex-col gap-3">
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <li
+                key={item.id}
+                id={item.id}
+                className={`overflow-hidden rounded-2xl border bg-card transition-colors ${
+                  isOpen ? "border-[var(--primary)]" : "border-border hover:border-[var(--primary)]/60"
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${item.id}-panel`}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
+                >
+                  <span className="font-display text-base font-semibold text-foreground sm:text-lg">
+                    {item.q}
+                  </span>
+                  <span
+                    className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-[var(--surface)] text-[var(--accent)] transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                    aria-hidden
+                  >
+                    <Plus className="h-5 w-5" />
+                  </span>
+                </button>
+                <div
+                  id={`${item.id}-panel`}
+                  role="region"
+                  className={`grid transition-all duration-300 ease-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-5 pb-6 text-sm leading-relaxed text-muted-foreground sm:px-6 sm:text-base">
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="mt-12 rounded-3xl border border-border bg-card p-6 text-center sm:p-8">
+          <h3 className="font-display text-xl font-bold">Não encontrou sua dúvida?</h3>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Fala com a gente no WhatsApp — respondemos rapidinho com tudo que você precisa saber.
+          </p>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-[var(--accent-foreground)] shadow-[var(--shadow-glow)] transition-transform hover:-translate-y-0.5"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer id="contato" className="border-t border-border bg-[var(--surface)]">
@@ -374,6 +518,7 @@ function Index() {
         <Hero />
         <Products />
         <HowItWorks />
+        <FAQ />
       </main>
       <Footer />
     </div>
