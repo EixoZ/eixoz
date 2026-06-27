@@ -169,6 +169,7 @@ function Header() {
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
           <a href="#produtos" className="transition-colors hover:text-foreground">Produtos</a>
           <a href="#como-funciona" className="transition-colors hover:text-foreground">Como funciona</a>
+          <a href="#faq" className="transition-colors hover:text-foreground">FAQ</a>
           <a href="#contato" className="transition-colors hover:text-foreground">Contato</a>
         </nav>
         <div className="flex items-center gap-2">
