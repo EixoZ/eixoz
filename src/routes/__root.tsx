@@ -11,7 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import faviconAsset from "../assets/favicon.png.asset.json";
+
+const SITE_URL = "https://eixoz.lovable.app";
+const SITE_IMAGE = `${SITE_URL}/favicon.png`;
 
 function NotFoundComponent() {
   return (
@@ -88,16 +90,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Colecionáveis e chibis, brindes corporativos e peças personalizadas — impressos em 3D com acabamento premium, atenção a cada detalhe!" },
       { property: "og:description", content: "Colecionáveis e chibis, brindes corporativos e peças personalizadas — impressos em 3D com acabamento premium, atenção a cada detalhe!" },
       { name: "twitter:description", content: "Colecionáveis e chibis, brindes corporativos e peças personalizadas — impressos em 3D com acabamento premium, atenção a cada detalhe!" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/17d5893f-423c-470a-afa7-71decf9fa675/id-preview-821ad84e--8fbf9072-a910-43a6-8d3a-0bde258f407e.lovable.app-1782580710134.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/17d5893f-423c-470a-afa7-71decf9fa675/id-preview-821ad84e--8fbf9072-a910-43a6-8d3a-0bde258f407e.lovable.app-1782580710134.png" },
+      { property: "og:image", content: SITE_IMAGE },
+      { name: "twitter:image", content: SITE_IMAGE },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: faviconAsset.url },
-      { rel: "apple-touch-icon", href: faviconAsset.url },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
