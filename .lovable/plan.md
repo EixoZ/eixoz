@@ -1,33 +1,23 @@
-## Nova seção: FAQ (Perguntas Frequentes)
+## Plano
 
-Adicionar uma seção de FAQ entre "Como funciona" e o rodapé, com as 10 perguntas e respostas que você enviou.
+1. **Substituir os assets externos por arquivos reais no repositório**
+   - Baixar/recuperar a logo e o favicon que hoje estão como `.asset.json`.
+   - Salvar os binários reais em `src/assets` ou `public` com nomes estáveis, por exemplo `src/assets/eixoz-logo.png` e `public/favicon.png`.
+   - Manter as imagens de categorias já existentes em `src/assets`, pois elas já estão versionadas.
 
-### Comportamento
+2. **Atualizar as referências no código**
+   - Trocar imports de `eixoz-logo.png.asset.json` e `favicon.png.asset.json` por imports/URLs de arquivos reais.
+   - Ajustar favicon, apple-touch-icon, Open Graph/Twitter image e JSON-LD para não dependerem de URLs `__l5e`, que podem quebrar fora da Lovable.
+   - Remover dependência dos arquivos `.asset.json` para essas imagens personalizadas.
 
-Accordion clássico tipo "single open": só uma pergunta aberta por vez. Ao clicar em outra pergunta, a anterior fecha automaticamente — exatamente como você descreveu. Por padrão, todas começam fechadas para a seção ficar limpa e curta.
+3. **Prevenir o problema nas próximas imagens personalizadas**
+   - Adicionar uma regra simples ao projeto: imagens personalizadas/usadas no site devem ficar como arquivo real em `src/assets` ou `public`, não apenas como ponteiro externo.
+   - Se necessário, ajustar `.gitignore` apenas para não bloquear imagens dessas pastas.
 
-### Visual (mantendo a identidade do site)
+4. **Verificar antes de finalizar**
+   - Confirmar que não sobra nenhuma referência a `eixoz-logo.png.asset.json`, `favicon.png.asset.json` ou `/__l5e/assets-v1` nas imagens críticas.
+   - Verificar que os arquivos reais aparecem em `git ls-files` ou estão prontos para sincronizar com GitHub.
 
-- Mesma estrutura das outras seções: container centralizado, título grande, kicker em laranja neon ("FAQ") e subtítulo curto.
-- Cada item: card com borda sutil, cantos arredondados, fundo do card (mesmo padrão dos cards de produtos e passos).
-- Pergunta em peso bold + ícone de "+" à direita que rotaciona para "×" quando aberto.
-- Hover na pergunta destaca a borda em roxo (igual aos cards atuais).
-- Resposta com animação suave de altura (expand/collapse) e fade-in do texto.
-- Funciona perfeitamente em mobile e nos dois temas (claro e escuro).
-- Link de "FAQ" adicionado no menu de navegação do header (desktop).
+## Observação importante
 
-### Sugestões opcionais para deixar ainda mais funcional
-
-1. **CTA no fim do FAQ**: um bloco curto com "Não encontrou sua dúvida? Fale com a gente" + botão WhatsApp — converte quem leu o FAQ mas ainda tem perguntas.
-2. **FAQ Schema (JSON-LD)**: além de exibir as perguntas na página, adicionar marcação `FAQPage` no `<head>`. Isso pode fazer suas perguntas aparecerem direto no Google como resultado rico (rich snippet), aumentando muito a visibilidade orgânica — combina com o trabalho de SEO que já fizemos.
-3. **Permitir abrir links**: cada pergunta recebe um `id` (ex.: `#faq-prazo`), permitindo compartilhar link direto para uma resposta específica caso você queira mandar para um cliente.
-
-Posso aplicar as 3 sugestões junto, ou só o accordion básico — me diga.
-
-### Detalhes técnicos
-
-- Componente novo `FAQ` dentro de `src/routes/index.tsx` (mesmo padrão dos outros componentes da página).
-- Estado controlado via `useState<number | null>(openIndex)` — garante o comportamento "single open".
-- Animação via `max-height` + `opacity` com transição CSS (sem dependência extra).
-- JSON-LD `FAQPage` adicionado ao array `scripts` do `Route.head()` (se aprovado).
-- Tokens de cor existentes (`--accent`, `--primary`, `--border`, `--card`) — nenhum hardcode de cor.
+Eu não posso executar `commit` ou `push` manualmente daqui, porque o estado Git é gerenciado pela integração da Lovable. Mas, depois que eu salvar os arquivos reais no projeto, a sincronização GitHub da Lovable deve enviar essas alterações automaticamente para o repositório conectado. Se o GitHub não estiver conectado, será preciso conectar em **Plus (+) → GitHub → Connect project**.
