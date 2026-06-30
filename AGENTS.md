@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project asset rule
+
+Custom images uploaded to personalize this site, such as logos, favicons, product photos, and branded visuals, must be saved as real files in `src/assets` or `public` and referenced from there so GitHub/Netlify deployments do not depend on Lovable-only asset pointers.

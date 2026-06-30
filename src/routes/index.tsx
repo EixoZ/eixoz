@@ -3,14 +3,13 @@ import { Moon, Sun, Upload, Printer, Truck, MessageCircle, Instagram, Mail, Arro
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
-import logoAsset from "@/assets/eixoz-logo.png.asset.json";
-import faviconAsset from "@/assets/favicon.png.asset.json";
+import logoUrl from "@/assets/eixoz-logo.png";
 import imgColecionaveis from "@/assets/cat-colecionaveis.jpg";
 import imgCorporativos from "@/assets/cat-corporativos.jpg";
 import imgPersonalizados from "@/assets/cat-personalizados.jpg";
 
 const SITE_URL = "https://eixoz.lovable.app";
-const OG_IMAGE = `${SITE_URL}${faviconAsset.url}`;
+const OG_IMAGE = `${SITE_URL}/favicon.png`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -160,7 +159,7 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="#top" className="flex min-w-0 items-center gap-3">
-          <img src={logoAsset.url} alt="EixoZ" className="h-11 w-11 shrink-0 rounded-xl object-cover" />
+          <img src={logoUrl} alt="EixoZ" className="h-11 w-11 shrink-0 rounded-xl object-cover" />
           <div className="min-w-0 leading-tight">
             <div className="truncate font-display text-lg font-bold tracking-tight">EixoZ Personalizados</div>
             <div className="truncate text-xs text-muted-foreground">Impressão 3D premium</div>
@@ -255,7 +254,7 @@ function Hero() {
           />
           <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border border-border bg-card p-6 shadow-[var(--shadow-elegant)]">
             <img
-              src={logoAsset.url}
+              src={logoUrl}
               alt="Logo EixoZ Personalizados"
               className="h-full w-full object-contain"
             />
@@ -465,7 +464,7 @@ function Footer() {
     <footer id="contato" className="border-t border-border bg-[var(--surface)]">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="flex flex-col items-center gap-6 text-center">
-          <img src={logoAsset.url} alt="EixoZ Personalizados" className="h-24 w-24 rounded-2xl object-contain" />
+          <img src={logoUrl} alt="EixoZ Personalizados" className="h-24 w-24 rounded-2xl object-contain" />
           <div>
             <div className="font-display text-xl font-bold">EixoZ Personalizados</div>
             <div className="text-sm text-muted-foreground">Impressão 3D premium · Cultura maker</div>
